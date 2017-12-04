@@ -11,11 +11,10 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @AllArgsConstructor
 @Data
 @Entity
-public class News extends AbstractPersistable<Long> {
+public class Article extends AbstractPersistable<Long> {
     
     private String title;
     private String caption;
-    private String content;
     // private LocalDate date; TODO
     
 }
