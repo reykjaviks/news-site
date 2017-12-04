@@ -4,15 +4,14 @@
         <title></title>
         <meta charset="UTF-8" />
     </head>
-    <body>
-        
+    <body> 
         <h1>News</h1>
-
+        
         <p th:each="article : ${news}">
-            <span th:text="${article.title}">Title</span>
+            <a th:href="@{/{article}(article=${article.id})}" th:text="${article.title}">Item name</a>
         </p>
 
-        <h2>Add News</h2>
+        <h2>Add an article</h2>
 
         <form th:action="@{/}" method="POST">
             <p>Title: <input name="title"></input></p>
