@@ -8,6 +8,7 @@ public class DefaultController {
 
     @RequestMapping("*")
     public String handleDefault() {
-        return "home";
+        return "index";
     }
+
 }
