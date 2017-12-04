@@ -1,30 +1,30 @@
 package news.controller;
 
-import news.domain.News;
+import news.domain.Article;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import news.repository.NewsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import news.repository.ArticleRepository;
 
 @Controller
 public class NewsController {
     
     @Autowired
-    private NewsRepository newsRepository;
+    private ArticleRepository articleRepository;
     
     @PostMapping("/")
-    public String addNews(@RequestParam String title, @RequestParam String caption) {
-        newsRepository.save(new News(title, caption));
+    public String addArticle(@RequestParam String title, @RequestParam String caption) {
+        articleRepository.save(new Article(title, caption));
         return "redirect:/";
     }
     
     @RequestMapping("/")
     public String listNews(Model model) {
-        model.addAttribute("newsList", newsRepository.findAll());
+        model.addAttribute("newsList", articleRepository.findAll());
        return "index"; 
     }
 
