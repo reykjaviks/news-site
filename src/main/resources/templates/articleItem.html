@@ -6,7 +6,8 @@
     </head>
     <body>
         <h1 th:text="${article.title}">Title</h1>
-        <p th:text="${article.caption}">Content</p>
+        <p th:text="${article.caption}">Caption</p>
+        <p th:text="${article.date}">Date</p>
         <a th:href="@{/}">Back to listing.</a>
     </body>
 </html>

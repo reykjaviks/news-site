@@ -1,5 +1,6 @@
 package news.controller;
 
+import java.time.LocalDate;
 import news.domain.Article;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +20,7 @@ public class NewsController {
     
     @PostMapping("/")
     public String addArticle(@RequestParam String title, @RequestParam String caption) {
-        articleRepository.save(new Article(title, caption));
+        articleRepository.save(new Article(title, caption, LocalDate.now()));
         return "redirect:/";
     }
     
@@ -30,7 +31,7 @@ public class NewsController {
     }
     
     @RequestMapping("/{id}")
-    public String getArticle(Model model, @PathVariable Long id) {
+    public String retrieveArticle(Model model, @PathVariable Long id) {
         model.addAttribute("article", articleRepository.getOne(id));
         return "articleItem";
     }

@@ -15,6 +15,6 @@ public class Article extends AbstractPersistable<Long> {
     
     private String title;
     private String caption;
-    // private LocalDate date; TODO
+    private LocalDate date;
     
 }
