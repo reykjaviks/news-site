@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title></title>
+        <meta charset="UTF-8" />
+    </head>
+    <body>
+        
+        <h1>News</h1>
+
+        <p th:each="article : ${newsList}">
+            <span th:text="${article.title}">Title</span>
+        </p>
+
+        <h2>Add News</h2>
+
+        <form th:action="@{/}" method="POST">
+            <p>Title: <input name="title"></input></p>
+            <p>Caption: <textarea name="caption"></textarea></p>
+            <input type="submit" value="Add"></input>
+            
+        </form>
+
+    </body>
+</html>
