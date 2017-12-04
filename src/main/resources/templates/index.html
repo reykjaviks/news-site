@@ -8,7 +8,7 @@
         <h1>News</h1>
         
         <p th:each="article : ${news}">
-            <a th:href="@{/{article}(article=${article.id})}" th:text="${article.title}">Item name</a>
+            <a th:href="@{/{article}(article=${article.id})}" th:text="${article.title}">Article title</a>
         </p>
 
         <h2>Add an article</h2>
