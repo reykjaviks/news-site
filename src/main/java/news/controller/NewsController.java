@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import news.repository.NewsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class NewsController {
@@ -14,18 +16,16 @@ public class NewsController {
     @Autowired
     private NewsRepository newsRepository;
     
-    @RequestMapping("/add")
-    public String foo() {
-        return "add";
+    @PostMapping("/")
+    public String addNews(@RequestParam String title, @RequestParam String caption) {
+        newsRepository.save(new News(title, caption));
+        return "redirect:/";
     }
     
-    @PostMapping("/add")
-    public String addNews(@RequestParam String title,
-                          @RequestParam String caption,
-                          @RequestParam String content) {
-        News news = new News(title, caption, content);
-        newsRepository.save(news);
-        return "redirect:/add";
+    @RequestMapping("/")
+    public String listNews(Model model) {
+        model.addAttribute("newsList", newsRepository.findAll());
+       return "index"; 
     }
 
 }
