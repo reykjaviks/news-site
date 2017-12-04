@@ -24,7 +24,7 @@ public class NewsController {
     
     @RequestMapping("/")
     public String listNews(Model model) {
-        model.addAttribute("newsList", articleRepository.findAll());
+        model.addAttribute("news", articleRepository.findAll());
        return "index"; 
     }
 
