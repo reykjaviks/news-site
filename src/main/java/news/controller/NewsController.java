@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import news.repository.ArticleRepository;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class NewsController {
@@ -26,6 +27,12 @@ public class NewsController {
     public String listNews(Model model) {
         model.addAttribute("news", articleRepository.findAll());
        return "index"; 
+    }
+    
+    @RequestMapping("/{id}")
+    public String getArticle(Model model, @PathVariable Long id) {
+        model.addAttribute("article", articleRepository.getOne(id));
+        return "articleItem";
     }
 
 }
