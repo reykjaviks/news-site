@@ -5,13 +5,17 @@
         <meta charset="UTF-8" />
     </head>
     <body> 
+        <ul>
+            <li th:each="category : ${categories}" th:text="${category.name}"></li>
+        </ul>
+
         <h1>News</h1>
         
         <p th:each="article : ${news}">
             <a th:href="@{/{article}(article=${article.id})}" th:text="${article.title}">Article title</a>
         </p>
 
-        <h2>New article</h2>
+        <h2>Write an article</h2>
 
         <form th:action="@{/}" method="POST">
             <p>Title <input name="title"></input></p>

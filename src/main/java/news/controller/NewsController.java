@@ -12,6 +12,7 @@ import news.repository.ArticleRepository;
 import news.repository.CategoryRepository;
 import news.repository.WriterRepository;
 import news.service.ArticleConfigService;
+import news.service.CategoryConfigService;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -25,10 +26,12 @@ public class NewsController {
     private ArticleRepository articleRepository;
     @Autowired
     private ArticleConfigService articleConfigService;
+    @Autowired
+    private CategoryConfigService categoryConfigService;
 
 
     @PostConstruct
-    private String addBaseNews() {
+    private String addNewsBase() {
         articleRepository.save(articleConfigService.abduction());
         articleRepository.save(articleConfigService.driverlessBuses());
         return "index";
@@ -44,6 +47,7 @@ public class NewsController {
     @RequestMapping("/")
     public String listNews(Model model) {
         Pageable pageable = PageRequest.of(0, 5, Sort.Direction.DESC, "pubDate");
+        model.addAttribute("categories", categoryConfigService.getAllCategories());
         model.addAttribute("news", articleRepository.findAll(pageable));
         return "index";
     }
