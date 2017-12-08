@@ -1,6 +1,7 @@
 package news.controller;
 
 import java.time.LocalDateTime;
+import javax.annotation.PostConstruct;
 import news.domain.Article;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import news.repository.ArticleRepository;
+import news.repository.CategoryRepository;
 import news.repository.WriterRepository;
+import news.service.CreateArticle;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -20,8 +23,13 @@ public class NewsController {
 
     @Autowired
     private ArticleRepository articleRepository;
-    @Autowired
-    private WriterRepository writerRepository;
+
+    @PostConstruct
+    private String addBaseNews() {
+        articleRepository.save(CreateArticle.abduction());
+        articleRepository.save(CreateArticle.driverlessBuses());
+        return "index";
+    }
 
     @PostMapping("/")
     public String addArticle(@ModelAttribute Article article) {
