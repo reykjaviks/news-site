@@ -8,9 +8,9 @@ import news.domain.Article;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CreateArticle {
+public class ArticleConfigService {
 
-    public static Article driverlessBuses() {
+    public Article driverlessBuses() {
         String title = "Singapore announces driverless buses on public roads from 2022";
         String caption = "Driverless buses are to be first launched in three towns on less crowded roads "
                         + "made to be suitable for the purpose.";
@@ -40,7 +40,7 @@ public class CreateArticle {
         return new Article(title, caption, content, pubDate);
     }
     
-    public static Article abduction() {
+    public Article abduction() {
         String title = "Abducted Canadian-US couple recovered from Pakistan's tribal areas";
         String caption = "The couple was abducted by the Haqqani network in 2012 while they were on a tour "
                         + "to Afghanistan.";
