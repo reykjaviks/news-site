@@ -5,11 +5,14 @@
         <meta charset="UTF-8" />
     </head>
     <body>
+        <ul>
+            <li th:text="${article.category}">Category</li>
+        </ul>
+        
         <h1 th:text="${article.title}">Title</h1>
         <h3 style="font-weight: bold;" th:text="${article.caption}">Caption</h3>
         <p th:text="${article.content}">Content</p>
         <p th:text="${article.pubDate}">Date</p>
         <a th:href="@{/}">Back to listing.</a>
-
     </body>
 </html>

@@ -24,6 +24,8 @@ public class Article extends AbstractPersistable<Long> {
 
     @Column(length = 1000000)
     private String content;
+    
+    private String category;
 
     private LocalDateTime pubDate;
     /*

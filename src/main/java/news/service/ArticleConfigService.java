@@ -36,8 +36,10 @@ public class ArticleConfigService {
                         "constraints may help us become a global player in urban mobility solutions. \n" +
                         "What works here is likely to also work in other cities\". He noted driverless \n" +
                         "technology testing for Singapore was underway by at least 10 companies.";
+        String category = "Technology";
         LocalDateTime pubDate = LocalDateTime.of(2017, 11, 24, 10, 30);
-        return new Article(title, caption, content, pubDate);
+        
+        return new Article(title, caption, content, category, pubDate);
     }
     
     public Article abduction() {
@@ -63,7 +65,8 @@ public class ArticleConfigService {
                         "According to a US official and Pakistan Army's press release on Friday, the \n" +
                         "couple with their children were repatriated.";
         LocalDateTime pubDate = LocalDateTime.of(2017, 10, 15, 11, 43);
-        return new Article(title, caption, content, pubDate);
+        String category = "Current Events";
+        return new Article(title, caption, content, category, pubDate);
     }
 
 }
