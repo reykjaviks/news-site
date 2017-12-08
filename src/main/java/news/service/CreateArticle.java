@@ -5,7 +5,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import news.domain.Article;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CreateArticle {
 
     public static Article driverlessBuses() {
