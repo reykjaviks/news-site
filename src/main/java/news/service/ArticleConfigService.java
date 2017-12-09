@@ -3,14 +3,31 @@ package news.service;
 import java.nio.charset.Charset;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import news.domain.Article;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ArticleConfigService {
 
-    public Article driverlessBuses() {
+    private List<Article> articles;
+
+    public ArticleConfigService() {
+        articles = new ArrayList<>();
+    }
+
+    public void initialize() {
+        articles.add(driverlessBuses());
+        articles.add(abduction());
+    }
+
+    public List<Article> getAllArticles() {
+        return this.articles;
+    }
+
+    private Article driverlessBuses() {
         String title = "Singapore announces driverless buses on public roads from 2022";
         String caption = "Driverless buses are to be first launched in three towns on less crowded roads "
                         + "made to be suitable for the purpose.";
@@ -36,13 +53,12 @@ public class ArticleConfigService {
                         "constraints may help us become a global player in urban mobility solutions. \n" +
                         "What works here is likely to also work in other cities\". He noted driverless \n" +
                         "technology testing for Singapore was underway by at least 10 companies.";
-        String category = "Technology";
+        String category = "technology";
         LocalDateTime pubDate = LocalDateTime.of(2017, 11, 24, 10, 30);
-        
         return new Article(title, caption, content, category, pubDate);
     }
     
-    public Article abduction() {
+    private Article abduction() {
         String title = "Abducted Canadian-US couple recovered from Pakistan's tribal areas";
         String caption = "The couple was abducted by the Haqqani network in 2012 while they were on a tour "
                         + "to Afghanistan.";
@@ -65,7 +81,7 @@ public class ArticleConfigService {
                         "According to a US official and Pakistan Army's press release on Friday, the \n" +
                         "couple with their children were repatriated.";
         LocalDateTime pubDate = LocalDateTime.of(2017, 10, 15, 11, 43);
-        String category = "Current Events";
+        String category = "events";
         return new Article(title, caption, content, category, pubDate);
     }
 
