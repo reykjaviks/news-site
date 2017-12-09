@@ -12,14 +12,26 @@ import org.springframework.stereotype.Service;
 public class CategoryConfigService {
 
     private List<Category> categories;
-
+    
     public CategoryConfigService() {
         categories = new ArrayList<Category>();
-        categories.add(new Category("Current Events"));
-        categories.add(new Category("Technology"));
-        categories.add(new Category("Politics"));
-        categories.add(new Category("Sports"));
-        categories.add(new Category("Weather"));
+    }
+
+    public void initialize() {
+        Category technology = new Category();
+        technology.setName("technology");
+        categories.add(technology);
+        Category weather = new Category();
+        weather.setName("weather");
+        Category politics = new Category();
+        politics.setName("politics");
+        Category events = new Category();
+        events.setName("events");
+        
+        categories.add(technology);
+        categories.add(weather);
+        categories.add(politics);
+        categories.add(events);
     }
 
     public List<Category> getAllCategories() {
