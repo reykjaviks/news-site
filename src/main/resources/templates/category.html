@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title></title>
+        <meta charset="UTF-8" />
+    </head>
+    <body> 
+        <h1 th:text="${category.name}">Category</h1>
+        
+        <ul>
+            <li th:each="article : ${news}">
+                <a th:href="@{/{article}(article=${article.id})}" th:text="${article.title}">Article title</a>
+                <p th:text="${article.caption}">Caption</p>
+            </li>
+        </ul>
+        
+        <a th:href="@{/}">Back to listing.</a>
+
+    </body>
+</html>
