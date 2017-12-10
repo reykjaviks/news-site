@@ -12,23 +12,23 @@
         </ul>
 
         <h1>News</h1>
-        
+
         <p th:each="article : ${news}">
             <a th:href="@{/{article}(article=${article.id})}" th:text="${article.title}">Article title</a>
+            <br></br>
+            <img th:if="${article.fileObject != null}" th:src="@{/images/{id}(id=${article.fileObject.id})}"/>
         </p>
 
         <h2>Write an article</h2>
 
-        <form th:action="@{/}" method="POST">
+        <form th:action="@{/}" method="POST" enctype="multipart/form-data">
             <p>Title <input name="title"></input></p>
             <p>Caption <textarea name="caption"></textarea></p>
             <p>Content <textarea name="content"></textarea></p>
-            <span th:each="category : ${categories}"><input type="checkbox" th:text="${category.name}" name="category" th:value="${category.name}"/></span>
+            <span th:each="category : ${categories}" style="padding: 5px;"><input type="checkbox" th:text="${category.name}" name="category" th:value="${category.name}"/></span>
+            <p><input type="file" name="file" /></p>
             <p></p>
             <input type="submit" value="Add"></input>  
         </form>
-        
-        <!-- <a th:href="@{/categories}">Categories</a> -->
-
     </body>
 </html>
