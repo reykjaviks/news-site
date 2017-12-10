@@ -5,6 +5,8 @@
         <meta charset="UTF-8" />
     </head>
     <body>
+        <h2>Categories</h2>
+        
         <ul>
             <li>
                 <a th:href="@{/categories/{category}(category=${category.name})}" th:text="${category.name}"></a>
@@ -16,5 +18,6 @@
         <p th:text="${article.content}">Content</p>
         <p th:text="${article.pubDate}">Date</p>
         <a th:href="@{/}">Back to listing.</a>
+        
     </body>
 </html>
