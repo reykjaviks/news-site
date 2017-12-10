@@ -1,11 +1,17 @@
 package news.service;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import news.domain.Article;
 import news.domain.FileObject;
 import org.springframework.stereotype.Service;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.Path;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Service
 public class ArticleConfigService {
@@ -29,12 +35,29 @@ public class ArticleConfigService {
         articles.add(driverlessBuses());
         articles.add(abduction());
     }
+    
+    private FileObject findImage(String location) {
+        FileObject fo = new FileObject();
+        Path path = Paths.get(location);
+        try {
+            byte[] content = Files.readAllBytes(path);
+            fo.setContent(content);
+            fo.setContentType("image/jpeg");
+            fo.setContentLength((long) content.length);
+            return fo;
+        } catch (IOException ex) {
+            System.err.println("Error reading file: " + ex.getMessage());
+            return null;
+        }
+    }
 
     private Article driverlessBuses() {
         String title = "Singapore announces driverless buses on public roads from 2022";
         String caption = "Driverless buses are to be first launched in three towns on less crowded roads "
                         + "made to be suitable for the purpose.";
-        FileObject fo = null;
+        
+        FileObject fo = findImage("src/main/resources/images/driverless_bus.jpg");
+        
         String content = "On Wednesday, Singapore's government announced its intention to have driverless \n" +
                         "buses operating on public roads from 2022. Driverless buses are to be first \n" +
                         "launched in three towns on less crowded roads made to be suitable for the \n" +

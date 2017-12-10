@@ -1,6 +1,7 @@
 package news.domain;
 
 import java.time.LocalDateTime;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
@@ -21,7 +22,7 @@ public class Article extends AbstractPersistable<Long> {
     @Column(length = 10000)
     private String caption;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     private FileObject fileObject;
 
     @Column(length = 1000000)
