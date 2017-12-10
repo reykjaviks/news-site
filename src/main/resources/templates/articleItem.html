@@ -6,7 +6,9 @@
     </head>
     <body>
         <ul>
-            <li th:text="${article.category}">Category</li>
+            <li>
+                <a th:href="@{/categories/{category}(category=${category.name})}" th:text="${category.name}"></a>
+            </li>
         </ul>
         
         <h1 th:text="${article.title}">Title</h1>
