@@ -7,20 +7,24 @@ import news.domain.Category;
 import org.springframework.stereotype.Service;
 
 @Service
-@Data
 public class CategoryConfigService {
 
     private List<Category> categories;
 
     public CategoryConfigService() {
         categories = new ArrayList<Category>();
+        this.initialize();
     }
 
     public List<Category> getAllCategories() {
         return this.categories;
     }
+    
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
 
-    public void initialize() {
+    private void initialize() {
         Category technology = new Category();
         technology.setName("technology");
         categories.add(technology);

@@ -44,12 +44,8 @@ public class NewsController {
 
     @PostConstruct
     public String init() {
-        categoryConfigService.initialize();
         categoryRepository.saveAll(categoryConfigService.getAllCategories());
-        
-        articleConfigService.initialize();
         articleRepository.saveAll(articleConfigService.getAllArticles());
-        
         return "index";
     }
 

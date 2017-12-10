@@ -14,13 +14,18 @@ public class ArticleConfigService {
 
     public ArticleConfigService() {
         articles = new ArrayList<>();
+        this.initialize();
     }
 
     public List<Article> getAllArticles() {
         return this.articles;
     }
+    
+    public void setArticles(List<Article> articles) {
+        this.articles = articles;
+    }
 
-    public void initialize() {
+    private void initialize() {
         articles.add(driverlessBuses());
         articles.add(abduction());
     }
@@ -29,6 +34,7 @@ public class ArticleConfigService {
         String title = "Singapore announces driverless buses on public roads from 2022";
         String caption = "Driverless buses are to be first launched in three towns on less crowded roads "
                         + "made to be suitable for the purpose.";
+        FileObject fo = null;
         String content = "On Wednesday, Singapore's government announced its intention to have driverless \n" +
                         "buses operating on public roads from 2022. Driverless buses are to be first \n" +
                         "launched in three towns on less crowded roads made to be suitable for the \n" +
@@ -52,15 +58,15 @@ public class ArticleConfigService {
                         "What works here is likely to also work in other cities\". He noted driverless \n" +
                         "technology testing for Singapore was underway by at least 10 companies.";
         String category = "technology";
-        FileObject fo = null;
         LocalDateTime pubDate = LocalDateTime.of(2017, 11, 24, 10, 30);
-        return new Article(title, caption, content, category, fo, pubDate);
+        return new Article(title, caption, fo, content, category, pubDate);
     }
     
     private Article abduction() {
         String title = "Abducted Canadian-US couple recovered from Pakistan's tribal areas";
         String caption = "The couple was abducted by the Haqqani network in 2012 while they were on a tour "
                         + "to Afghanistan.";
+        FileObject fo = null;
         String content = "Pakistan Army announced on Thursday they had recovered an abducted Canadian-US \n" +
                         "couple and their three children from the tribal areas of Pakistan in an \n" +
                         "operation carried out from US intelligence. The couple were abducted in 2012 by \n" +
@@ -79,10 +85,9 @@ public class ArticleConfigService {
                         "\n" +
                         "According to a US official and Pakistan Army's press release on Friday, the \n" +
                         "couple with their children were repatriated.";
-        LocalDateTime pubDate = LocalDateTime.of(2017, 10, 15, 11, 43);
         String category = "events";
-        FileObject fo = null;
-        return new Article(title, caption, content, category, fo, pubDate);
+        LocalDateTime pubDate = LocalDateTime.of(2017, 10, 15, 11, 43);
+        return new Article(title, caption, fo, content, category, pubDate);
     }
 
 }
