@@ -21,13 +21,13 @@ public class Article extends AbstractPersistable<Long> {
     @Column(length = 10000)
     private String caption;
 
+    @OneToOne
+    private FileObject fileObject;
+
     @Column(length = 1000000)
     private String content;
 
     private String category;
-
-    @OneToOne
-    private FileObject fileObject;
 
     private LocalDateTime pubDate;
 
