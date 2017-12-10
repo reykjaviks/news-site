@@ -1,10 +1,9 @@
 package news.domain;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,16 +23,12 @@ public class Article extends AbstractPersistable<Long> {
 
     @Column(length = 1000000)
     private String content;
-    
+
     private String category;
 
+    @OneToOne
+    private FileObject fileObject;
+
     private LocalDateTime pubDate;
-    /*
-    private File image;
-    @OneToMany
-    private List<Writer> writers;
-    @OneToMany
-    private List<Category> categories;
-     */
 
 }

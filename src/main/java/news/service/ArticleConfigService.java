@@ -1,12 +1,10 @@
 package news.service;
 
-import java.nio.charset.Charset;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import news.domain.Article;
+import news.domain.FileObject;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,13 +16,13 @@ public class ArticleConfigService {
         articles = new ArrayList<>();
     }
 
+    public List<Article> getAllArticles() {
+        return this.articles;
+    }
+
     public void initialize() {
         articles.add(driverlessBuses());
         articles.add(abduction());
-    }
-
-    public List<Article> getAllArticles() {
-        return this.articles;
     }
 
     private Article driverlessBuses() {
@@ -54,8 +52,9 @@ public class ArticleConfigService {
                         "What works here is likely to also work in other cities\". He noted driverless \n" +
                         "technology testing for Singapore was underway by at least 10 companies.";
         String category = "technology";
+        FileObject fo = null;
         LocalDateTime pubDate = LocalDateTime.of(2017, 11, 24, 10, 30);
-        return new Article(title, caption, content, category, pubDate);
+        return new Article(title, caption, content, category, fo, pubDate);
     }
     
     private Article abduction() {
@@ -82,7 +81,8 @@ public class ArticleConfigService {
                         "couple with their children were repatriated.";
         LocalDateTime pubDate = LocalDateTime.of(2017, 10, 15, 11, 43);
         String category = "events";
-        return new Article(title, caption, content, category, pubDate);
+        FileObject fo = null;
+        return new Article(title, caption, content, category, fo, pubDate);
     }
 
 }
