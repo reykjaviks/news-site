@@ -4,17 +4,25 @@
         <title></title>
         <meta charset="UTF-8" />
     </head>
-    <body> 
+    <body>
+        <h2>Categories</h2>
+        
         <ul>
             <li> 
                 <a th:href="@{/categories/{category}(category=${category.name})}" th:text="${category.name}"></a>
             </li>
         </ul>
 
-        <p th:each="article : ${news}">
-            <a th:href="@{/{article}(article=${article.id})}" th:text="${article.title}">Article title</a>
-            <br th:text="${article.pubDate}"></br>
-        </p>
+        <h1>All <span th:text="${category.name}"></span> news</h1>
+        
+        <ol>
+            <li th:each="article : ${news}">
+                <p>
+                    <a style="font-weight: bold; font-size: 17px;" th:href="@{/{article}(article=${article.id})}" th:text="${article.title}">Article Title</a>
+                    <br th:text="${article.pubDate}"></br>
+                </p>
+            </li>
+        </ol>
         
         <a th:href="@{/}">Back to listing.</a>
 
