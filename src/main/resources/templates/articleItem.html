@@ -14,9 +14,10 @@
         </ul>
         
         <h1 th:text="${article.title}">Title</h1>
+        <img th:if="${article.fileObject != null}" th:src="@{/images/{id}(id=${article.fileObject.id})}"/>
         <h3 style="font-weight: bold;" th:text="${article.caption}">Caption</h3>
         <p th:text="${article.content}">Content</p>
-        <p th:text="${article.pubDate}">Date</p>
+        <p th:text="${article.pubDate}" style="font-style: italic;">Date</p>
         <a th:href="@{/}">Back to listing.</a>
         
     </body>
