@@ -61,6 +61,12 @@
             <scope>test</scope>
         </dependency>
         
+        <!-- JUnit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        
         <!-- FluentLenium -->
         <dependency>
             <groupId>org.fluentlenium</groupId>
