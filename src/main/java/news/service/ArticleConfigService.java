@@ -36,7 +36,8 @@ public class ArticleConfigService {
         articles.add(abduction());
     }
     
-    private FileObject findImage(String location) {
+    // TODO: Break down in smaller chunks.
+    public FileObject findImage(String location) {
         FileObject fo = new FileObject();
         Path path = Paths.get(location);
         try {
