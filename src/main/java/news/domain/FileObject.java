@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import lombok.Data;
 import org.springframework.data.jpa.domain.AbstractPersistable;
-// muita sopivia annotaatioita
 
 @Entity
 @Data
