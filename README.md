@@ -9,6 +9,8 @@ https://news-site-ebberg.herokuapp.com/
 
 [Missing features](documentation/missing_features.md)
 
+[To do list](documentation/todo.md)
+
 [Hours](documentation/hours.md)
 
 ### Source of the pre-created news listed on the app
