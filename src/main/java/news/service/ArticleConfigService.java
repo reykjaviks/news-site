@@ -56,9 +56,7 @@ public class ArticleConfigService {
         String title = "Singapore announces driverless buses on public roads from 2022";
         String caption = "Driverless buses are to be first launched in three towns on less crowded roads "
                         + "made to be suitable for the purpose.";
-        
         FileObject fo = findImage("src/main/resources/images/driverless_bus.jpg");
-        
         String content = "On Wednesday, Singapore's government announced its intention to have driverless \n" +
                         "buses operating on public roads from 2022. Driverless buses are to be first \n" +
                         "launched in three towns on less crowded roads made to be suitable for the \n" +
