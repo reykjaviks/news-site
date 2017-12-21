@@ -1,8 +1,8 @@
 ## To Do List
 
 ### General
-2. Add configuration profiles (security, ~~production~~...)
-3. Link pre-created news to categories
+1. Add configuration profiles (security, ~~production~~...)
+2. Link pre-created news to categories
 
 ### Heroku
 1. Use PostgreSQL in Heroku to prevent data loss
