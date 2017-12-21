@@ -11,5 +11,6 @@ Day | Hours | Description
 9.12.   |   2    | Basic functionality
 10.12.  |   5    | Finishing touches
 11.12.  |   5    | Heroku/Travis configuration, tests and documentation
+21.12.  |   2    | Use PostgreSQL in Heroku
 
-#### Overall: 26 hours
+#### Overall: 28 hours
