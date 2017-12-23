@@ -16,6 +16,7 @@ import news.repository.CategoryRepository;
 import news.repository.FileObjectRepository;
 import news.service.ArticleConfigService;
 import news.service.CategoryConfigService;
+import news.service.FileObjectConfigService;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -41,6 +42,8 @@ public class NewsController {
     private ArticleConfigService articleConfigService;
     @Autowired
     private CategoryConfigService categoryConfigService;
+    @Autowired
+    private FileObjectConfigService fileObjectConfigService;
 
     @PostConstruct
     public String init() {
@@ -52,19 +55,16 @@ public class NewsController {
     @PostMapping("/")
     public String addArticle(@ModelAttribute Article article,
             @RequestParam("file") MultipartFile file) throws IOException {
-
-        FileObject fo = new FileObject();
-        fo.setContent(file.getBytes());
-        fo.setContentLength(file.getSize());
-        fo.setContentType(file.getContentType());
-        fileObjectRepository.save(fo);
-
-        article.setFileObject(fo);
-        article.setPubDate(LocalDateTime.now());
-
         if (article.getCategory() != null) {
+            FileObject fo = fileObjectConfigService.createFileObject(file);
+            fileObjectRepository.save(fo);
+            
+            article.setFileObject(fo);
+            article.setPubDate(LocalDateTime.now());
+            
             Category category = categoryRepository.findByName(article.getCategory());
             category.getArticles().add(article);
+            
             articleRepository.save(article);
         }
         return "redirect:/";
