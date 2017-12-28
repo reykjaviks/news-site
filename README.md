@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/reykjaviks/news-site.png?branch=master)](https://travis-ci.org/reykjaviks/news-site)
 ## **News Site**
-Simple application to add and view news created with Spring MVC on the course "Web-palvelinohjelmointi Java" in 2017.
+Simple application to add and view news created with Spring MVC on the course Web-palvelinohjelmointi Java in 2017.
 
 ### Application link
 https://news-site-ebberg.herokuapp.com/
