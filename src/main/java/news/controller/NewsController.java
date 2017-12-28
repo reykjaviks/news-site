@@ -74,14 +74,6 @@ public class NewsController {
         return "index";
     }
 
-    @RequestMapping("/categories/{name}")
-    public String listArticlesByCategory(Model model, @PathVariable String name) {
-        Category category = categoryRepository.findByName(name);
-        model.addAttribute("category", category);
-        model.addAttribute("news", category.getArticles());
-        return "category";
-    }
-
     @RequestMapping("/{id}")
     public String retrieveArticle(Model model, @PathVariable Long id) {
         Category category = categoryRepository.findByName(articleRepository.getOne(id).getCategory());
