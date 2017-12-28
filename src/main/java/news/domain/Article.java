@@ -30,5 +30,5 @@ public class Article extends AbstractPersistable<Long> {
     private String category;
 
     private LocalDateTime pubDate;
-
+    
 }
