@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
-public class NewsController {
+public class ArticleController {
 
     @Autowired
     private ArticleRepository articleRepository;
@@ -51,17 +51,12 @@ public class NewsController {
     @PostMapping("/")
     public String addArticle(@ModelAttribute Article article,
             @RequestParam("file") MultipartFile file) throws IOException {
+        // Todo: Generate an error message if category is empty
         if (article.getCategory() != null) {
             FileObject fo = fileObjectConfigService.createFileObject(file);
             fileObjectRepository.save(fo);
-            
-            article.setFileObject(fo);
-            article.setPubDate(LocalDateTime.now());
-            
-            Category category = categoryRepository.findByName(article.getCategory());
-            category.getArticles().add(article);
-            
-            articleRepository.save(article);
+            categoryRepository.findByName(article.getCategory()).getArticles().add(article);
+            articleRepository.save(articleConfigService.createArticle(article, fo));
         }
         return "redirect:/";
     }

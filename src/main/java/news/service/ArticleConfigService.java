@@ -10,8 +10,7 @@ import org.springframework.stereotype.Service;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.Path;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import news.domain.FormObject;
 
 @Service
 public class ArticleConfigService {
@@ -50,6 +49,24 @@ public class ArticleConfigService {
             System.err.println("Error reading file: " + ex.getMessage());
             return null;
         }
+    }
+
+    public Article createArticle(Article article, FileObject fo) {
+        article.setFileObject(fo);
+        article.setPubDate(LocalDateTime.now());
+        return article;
+    }
+        
+    // !!! Under development, used in form validation
+    public Article foo(FormObject formObject, FileObject fileObject) {
+        Article article = new Article();
+        article.setTitle(formObject.getTitle());
+        article.setCaption(formObject.getCaption());
+        article.setFileObject(fileObject);
+        article.setContent(formObject.getContent());
+        article.setCategory(formObject.getCategory());
+        article.setPubDate(LocalDateTime.now());
+        return article;
     }
 
     private Article driverlessBuses() {
