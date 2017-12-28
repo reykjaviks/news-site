@@ -17,11 +17,9 @@ import news.repository.FileObjectRepository;
 import news.service.ArticleConfigService;
 import news.service.CategoryConfigService;
 import news.service.FileObjectConfigService;
-import news.service.ImageConfigService;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,8 +40,6 @@ public class NewsController {
     private CategoryConfigService categoryConfigService;
     @Autowired
     private FileObjectConfigService fileObjectConfigService;
-    @Autowired
-    private ImageConfigService imageConfigService;
 
     @PostConstruct
     public String init() {
@@ -70,7 +66,6 @@ public class NewsController {
         return "redirect:/";
     }
     
-    
     @RequestMapping("/")
     public String listArticles(Model model) {
         Pageable pageable = PageRequest.of(0, 5, Sort.Direction.DESC, "pubDate");
@@ -93,11 +88,6 @@ public class NewsController {
         model.addAttribute("category", category);
         model.addAttribute("article", articleRepository.getOne(id));
         return "articleItem";
-    }
-
-    @RequestMapping("/images/{id}")
-    public ResponseEntity<byte[]> retrieveImage(Model model, @PathVariable Long id) {
-        return imageConfigService.configHeaders(fileObjectRepository.getOne(id));
     }
 
 }
