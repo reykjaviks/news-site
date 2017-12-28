@@ -25,17 +25,23 @@
             </li>
         </ol>
 
+        <!-- **************************************************************** -->
+        <!--  ARTICLE CREATION                                                -->
+        <!-- **************************************************************** -->
+        
         <h2>Write an Article</h2>
 
         <form th:action="@{/}" method="POST" enctype="multipart/form-data">
             <p>Title <input name="title"></input></p>
             <p>Caption <textarea name="caption"></textarea></p>
             <p>Content <textarea name="content"></textarea></p>
-            <span th:each="category : ${categories}" style="padding: 5px;"><input type="radio" th:text="${category.name}" name="category" th:value="${category.name}"/></span>
+            <span th:each="category : ${categories}" style="padding: 5px;">
+                <input type="radio" th:text="${category.name}" name="category" th:value="${category.name}"/>
+            </span>
             <p><input type="file" name="file" /></p>
             <p></p>
             <input type="submit" value="Add"></input>  
         </form>
-        
+
     </body>
 </html>
