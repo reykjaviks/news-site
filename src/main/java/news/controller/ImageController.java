@@ -19,7 +19,7 @@ public class ImageController {
 
     @RequestMapping("/images/{id}")
     public ResponseEntity<byte[]> retrieveImage(Model model, @PathVariable Long id) {
-        return imageConfigService.configHeaders(fileObjectRepository.getOne(id));
+        return imageConfigService.createResponse(fileObjectRepository.getOne(id));
     }
     
 }
