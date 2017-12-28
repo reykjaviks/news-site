@@ -17,12 +17,10 @@ import news.repository.FileObjectRepository;
 import news.service.ArticleConfigService;
 import news.service.CategoryConfigService;
 import news.service.FileObjectConfigService;
+import news.service.ImageConfigService;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,6 +42,8 @@ public class NewsController {
     private CategoryConfigService categoryConfigService;
     @Autowired
     private FileObjectConfigService fileObjectConfigService;
+    @Autowired
+    private ImageConfigService imageConfigService;
 
     @PostConstruct
     public String init() {
@@ -51,7 +51,7 @@ public class NewsController {
         articleRepository.saveAll(articleConfigService.getAllArticles());
         return "index";
     }
-
+    
     @PostMapping("/")
     public String addArticle(@ModelAttribute Article article,
             @RequestParam("file") MultipartFile file) throws IOException {
@@ -69,6 +69,7 @@ public class NewsController {
         }
         return "redirect:/";
     }
+    
     
     @RequestMapping("/")
     public String listArticles(Model model) {
@@ -96,11 +97,7 @@ public class NewsController {
 
     @RequestMapping("/images/{id}")
     public ResponseEntity<byte[]> retrieveImage(Model model, @PathVariable Long id) {
-        FileObject fo = fileObjectRepository.getOne(id);
-        final HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.parseMediaType(fo.getContentType()));
-        headers.setContentLength(fo.getContentLength());
-        return new ResponseEntity<>(fo.getContent(), headers, HttpStatus.CREATED);
+        return imageConfigService.configHeaders(fileObjectRepository.getOne(id));
     }
 
 }
