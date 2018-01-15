@@ -1,11 +1,8 @@
 package news.domain;
 
+import lombok.*;
+import javax.validation.constraints.*;
 import java.time.LocalDateTime;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.NotEmpty;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
@@ -16,17 +13,15 @@ public class FormObject {
     @Max(200)
     private String title;
 
+    @NotEmpty
     @Max(1000)
     private String caption;
 
-    private FileObject fileObject;
-
+    @NotEmpty
     @Max(100000)
     private String content;
 
-    @NotEmpty
+    @NotNull
     private String category;
-
-    private LocalDateTime pubDate;
     
 }

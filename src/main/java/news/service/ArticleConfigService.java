@@ -1,16 +1,13 @@
 package news.service;
 
+import java.util.*;
+import news.domain.*;
+import java.nio.file.*;
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import news.domain.Article;
-import news.domain.FileObject;
-import org.springframework.stereotype.Service;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.Path;
 import news.domain.FormObject;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import org.springframework.stereotype.Service;
 
 @Service
 public class ArticleConfigService {
@@ -51,21 +48,24 @@ public class ArticleConfigService {
         }
     }
 
+    public LocalDateTime formatDate(LocalDateTime date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyy HH:mm");
+        String text = date.format(formatter);
+        return LocalDateTime.parse(text, formatter);
+    }
+
     public Article createArticle(Article article, FileObject fo) {
         article.setFileObject(fo);
-        article.setPubDate(LocalDateTime.now());
+        article.setPubDate(formatDate(LocalDateTime.now())); // Is this the problem?
         return article;
     }
         
     // !!! Under development, used in form validation
-    public Article foo(FormObject formObject, FileObject fileObject) {
-        Article article = new Article();
+    public Article transferToArticle(Article article, FormObject formObject) {
         article.setTitle(formObject.getTitle());
         article.setCaption(formObject.getCaption());
-        article.setFileObject(fileObject);
         article.setContent(formObject.getContent());
         article.setCategory(formObject.getCategory());
-        article.setPubDate(LocalDateTime.now());
         return article;
     }
 

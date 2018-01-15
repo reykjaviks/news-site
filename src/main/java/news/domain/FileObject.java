@@ -1,9 +1,6 @@
 package news.domain;
 
-import javax.persistence.Basic;
-import javax.persistence.Lob;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.*;
 import lombok.Data;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 

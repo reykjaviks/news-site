@@ -1,7 +1,6 @@
 package news.service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import news.domain.Category;
 import org.springframework.stereotype.Service;
 
