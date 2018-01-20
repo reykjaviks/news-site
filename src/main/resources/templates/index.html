@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>Add and View News</title>
+        <title>Add and view News</title>
         <meta charset="UTF-8" />
     </head>
     <body>
+        <!-- **************************************************************** -->
+        <!--  LIST CATEGORIES                                                 -->
+        <!-- **************************************************************** -->
         <h2>Categories</h2>
-        
         <ul>
             <li th:each="category : ${categories}"> 
                 <a th:href="@{/categories/{category}(category=${category.name})}" th:text="${category.name}"></a>
             </li>
         </ul>
 
+        <!-- **************************************************************** -->
+        <!--  LIST ARTICLES                                                   -->
+        <!-- **************************************************************** -->
         <h1>News</h1>
-
         <ol>
             <li th:each="article : ${news}">
                 <p>
@@ -26,43 +30,42 @@
         </ol>
 
         <!-- **************************************************************** -->
-        <!--  FORM TO POST ARTICLES                                           -->
+        <!--  POST ARTICLES                                                   -->
         <!-- **************************************************************** -->
         <h2>Write an Article</h2>
-
-        <form th:action="@{/}" method="POST" enctype="multipart/form-data">
+        <form th:action="@{/}" method="POST" enctype="multipart/form-data" 
+              style="width: 400px; margin-bottom: 30px;">
             <div>
-                <label for="title">Title:</label>
+                <label for="title" style="padding-left: 21px;">Title:</label>
                 <input type="text" name="title" />
             </div>
-            
+
             <div>
                 <label for="caption">Caption:</label>
-                <textarea name="caption"></textarea>
+                <textarea name="caption" style="margin-top: 10px;"></textarea>
             </div>
-            
+
             <div>
                 <label for="content">Content:</label>
-                <textarea name="content"></textarea>
+                <textarea name="content" style="margin-top: 10px;"></textarea>
             </div>
-            
-            <div>
+
+            <div style="padding-left: 55px;">
                 <span th:each="category : ${categories}">
                     <label for="category">
-                        <input type="radio" th:text="${category.name}" name="category" th:value="${category.name}"/>
+                        <input type="radio" th:text="${category.name}" name="category" th:value="${category.name}" style="margin-top: 10px;"/>
                     </label>
                 </span>
             </div>
-            
+
             <div>
-                <label for="file">File:</label>
-                <input type="file" name="file" />
+                <label for="file" style="padding-left: 25px;">File:</label>
+                <input type="file" name="file" style="margin-top: 10px;"/>
             </div>
-            
-            <div class="button">
-                <button type="submit">Post your article</button>
+
+            <div class="button" style="padding-left: 57px;">
+                <button type="submit" style="margin-top: 10px;">Post your article</button>
             </div>
         </form>
-
     </body>
 </html>
